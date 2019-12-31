@@ -44,7 +44,7 @@ add_extension() {
 remove_extension() {
   extension=$1
   sudo sed -i '' "/$1/d" "$ini_file"
-  sudo rm -rf "$ext_dir"/"$1".so >/dev/null 2>&1
+  sudo rm -rf "$ext_dir"/"$1".so 
 }
 
 # Function to setup a remote tool
@@ -52,12 +52,12 @@ add_tool() {
   url=$1
   tool=$2
   if [ "$tool" = "composer" ]; then
-    brew install composer >/dev/null 2>&1
+    brew install composer 
   else
     if [ ! -e /usr/local/bin/"$tool" ]; then
       rm -rf /usr/local/bin/"${tool:?}"
     fi
-    sudo curl -o /usr/local/bin/"$tool" -L "$url" >/dev/null 2>&1
+    sudo curl -o /usr/local/bin/"$tool" -L "$url" 
     sudo chmod a+x /usr/local/bin/"$tool"
   fi
   add_log "$tick" "$tool" "Added"
@@ -70,9 +70,9 @@ add_pecl() {
 # Function to setup PHP and composer
 setup_php_and_composer() {
   export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
-  brew tap shivammathur/homebrew-php >/dev/null 2>&1
-  brew install shivammathur/php/php@"$version" >/dev/null 2>&1
-  brew link --force --overwrite php@"$version" >/dev/null 2>&1
+  brew tap shivammathur/homebrew-php 
+  brew install shivammathur/php/php@"$version" 
+  brew link --force --overwrite php@"$version" 
 }
 
 # Variables
